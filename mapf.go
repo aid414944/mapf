@@ -21,7 +21,6 @@ func New(path string)(m *Mapf, e error){
 
 	f, oe := os.OpenFile(path, os.O_RDWR, os.ModePerm)	
 	defer f.Close()
-
 	if oe != nil {
 		fmt.Printf("%v", oe)	
 		return nil, oe
@@ -52,16 +51,14 @@ func (m *Mapf)Flush()(e error){
 	}
 
 	f, oe := os.OpenFile(m.filePath, os.O_RDWR, os.ModePerm)
+	defer f.Close()
 	if oe != nil{
 		fmt.Printf("%v", oe)	
 		return oe
 	}
 
-	defer f.Close()
-
 	_, we := f.Write(b)
 	if we != nil{
-		
 		fmt.Printf("%v",  we)
 		return we
 	}
