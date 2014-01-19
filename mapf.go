@@ -42,7 +42,7 @@ func New(path string)(m *Mapf, e error){
 	return
 }
 
-func (m *Mapf)Flush()(e error){
+func (m *Mapf)Flush() error {
 
 	b, ee := json.Marshal(m.data)
 	if ee != nil{
