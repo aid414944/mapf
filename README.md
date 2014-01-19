@@ -28,8 +28,8 @@ mapf是一个go语言使用的类似map的容器，和map一样使用key-value�
     func (m *Mapf)SwitchMode(mode int)
  
 切换工作模式。mode可选值有：
-MODE_AUTOWRITE：该模式下每次调用Put()方法，mapf都会自动写入到文件中。
-MODE_NONWRITE：在此模式下需要用户调用Flush()方法才会将mapf写入到文件。
+        MODE_AUTOWRITE：该模式下每次调用Put()方法，mapf都会自动写入到文件中。
+        MODE_NONWRITE：在此模式下需要用户调用Flush()方法才会将mapf写入到文件。
             
 
     func (m *Mapf)Put(k string, v interface{}) error
