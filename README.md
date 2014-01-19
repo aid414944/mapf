@@ -14,7 +14,7 @@ mapf是一个go语言使用的类似map的容器，和map一样使用key-value�
 ----------
 ```golang
 func New(path string)(m *Mapf, e error)
-```
+
     新建一个Mapf，并以path参数指定的json文件初始化它。成功则返回新建Mapf的指针，失败则返回nil，具体失败原因可查看e。
 
 方法
