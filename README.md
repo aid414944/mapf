@@ -12,4 +12,6 @@ mapf是一个go语言使用的类似map的容器，和map一样使用key-value�
 
 函数
 ===
+```go
 func New(path string)(m *Mapf, e error)
+```
