@@ -9,3 +9,7 @@ mapf是一个go语言使用的类似map的容器，和map一样使用key-value�
     在此模式下需要用户调用Flush()方法才会将mapf写入到文件
     
 可以使用SwitchMode()方法来切换工作模式。
+
+函数
+===
+func New(path string)(m *Mapf, e error)
