@@ -37,8 +37,13 @@ mapf是一个go语言使用的类似map的容器，和map一样使用key-value�
     func (m *Mapf)Put(k string, v interface{}) error
 
 压入一个key-value，key的类型必须是string。
-    
+
    
     func (m *Mapf)Get(k string)(v interface{}, ok bool)
 
 根据key返回一个value，如果key不存在ok将为false
+
+
+    func (m *Mapf)Delete(k string) error
+    
+删除key和它对应的value。
