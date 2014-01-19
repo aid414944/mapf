@@ -47,3 +47,8 @@ mapf是一个go语言使用的类似map的容器，和map一样使用key-value�
     func (m *Mapf)Delete(k string) error
     
 删除key和它对应的value。
+
+
+    func (m *Mapf)Snapshot() map[string]interface{}
+    
+获得一个mapf的快照。
