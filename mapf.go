@@ -19,7 +19,7 @@ const (
 
 func New(path string)(m *Mapf, e error){
 
-	f, oe := os.OpenFile(path, os.O_RDWR, os.ModePerm)	
+	f, oe := os.OpenFile(path, os.O_RDONLY, os.ModePerm)	
 	defer f.Close()
 	if oe != nil {
 		fmt.Printf("%v", oe)	
@@ -50,7 +50,7 @@ func (m *Mapf)Flush()(e error){
 		return ee
 	}
 
-	f, oe := os.OpenFile(m.filePath, os.O_RDWR, os.ModePerm)
+	f, oe := os.OpenFile(m.filePath, os.O_WRONLY, os.ModePerm)
 	defer f.Close()
 	if oe != nil{
 		fmt.Printf("%v", oe)	
@@ -61,6 +61,11 @@ func (m *Mapf)Flush()(e error){
 	if we != nil{
 		fmt.Printf("%v",  we)
 		return we
+	}
+	
+	if te := f.Truncate(int64(len(b))); te != nil {
+		fmt.Printf("%v",  te)
+		return te
 	}
 	
 	return nil
@@ -81,4 +86,12 @@ func (m *Mapf)Put(k string, v interface{}) error {
 func (m *Mapf)Get(k string)(v interface{}, ok bool){
 	v, ok = m.data[k]
 	return 
+}
+
+func (m *Mapf)Delete(k string) error {
+	delete(m.data, k)
+	if m.writeMode == MODE_AUTOWRITE{
+		return m.Flush()
+	}
+	return nil
 }
