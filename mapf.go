@@ -95,3 +95,11 @@ func (m *Mapf)Delete(k string) error {
 	}
 	return nil
 }
+
+func (m *Mapf)Snapshot() map[string]interface{} {
+	s := make(map[string]interface{})
+	for k, v := range m.data{
+		s[k] = v
+	}
+	return s
+}
