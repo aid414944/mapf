@@ -26,7 +26,12 @@ func New(path string)(m *Mapf, e error){
 		return nil, oe
 	}
 	
-	fileinfo, _ := f.Stat()
+	fileinfo, se := f.Stat()
+	if se != nil {
+		fmt.Printf("%v", se)
+		return nil, se
+	}
+	
 	jsontext := make([]byte, fileinfo.Size())
 	if _ , re := f.Read(jsontext); re != nil {
 		fmt.Printf("%v", re)	
@@ -59,12 +64,12 @@ func (m *Mapf)Flush() error {
 
 	_, we := f.Write(b)
 	if we != nil{
-		fmt.Printf("%v",  we)
+		fmt.Printf("%v", we)
 		return we
 	}
 	
 	if te := f.Truncate(int64(len(b))); te != nil {
-		fmt.Printf("%v",  te)
+		fmt.Printf("%v", te)
 		return te
 	}
 	
